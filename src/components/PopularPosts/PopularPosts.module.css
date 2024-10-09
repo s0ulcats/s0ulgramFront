@@ -1,0 +1,16 @@
+.popularPostsContainer {
+  background-color: #0a1e34; /* dark blue */
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.postTitle {
+  color: #1e90ff; /* light blue */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.postTitle:hover {
+  color: #ffffff; /* white */
+}

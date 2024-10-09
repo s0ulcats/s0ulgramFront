@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #0a1e34; /* dark blue */
+  color: #ffffff; /* white */
+}
+
+.postsContainer {
+  flex: 1;
+}
+
+.popularPosts {
+  width: 300px;
+  margin-left: 20px;
+}
