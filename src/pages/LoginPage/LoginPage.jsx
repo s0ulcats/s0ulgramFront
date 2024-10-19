@@ -1,64 +1,71 @@
-import React, { useState, useEffect } from 'react'
-import s from './Login.module.css'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import s from './Login.module.css';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
+import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai'; // Иконки для полей ввода
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { status } = useSelector(state => state.auth)
+  const { status } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isAuth = useSelector(checkIsAuth)
+  const isAuth = useSelector(checkIsAuth);
 
   useEffect(() => {
-    // Проверяем токен перед редиректом
-    const token = window.localStorage.getItem('token');
-    if (token) {
-      navigate('/');
-    } else {
-      if (status) toast(status);
-    }
+      const token = window.localStorage.getItem('token');
+      if (token) {
+          navigate('/');
+      }
   }, [status, isAuth, navigate]);
 
-  const handleSubmit = () => {
-    try {
-      dispatch(loginUser({ username, password }));
-      setPassword('');
-      setUsername('');
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSubmit = async () => {
+      try {
+          await dispatch(loginUser({ username, password })).unwrap();
+          setPassword('');
+          setUsername('');
+      } catch (error) {
+          toast.error('Invalid username or password!'); // Уведомление об ошибке
+      }
   };
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className={s.form}>
-      <h1>Authorization</h1>
-      <label htmlFor="">
-        Username:
-        <input
-          type="text"
-          placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)} />
-      </label>
-      <label htmlFor="">
-        Password:
-        <input
-          type="password"
-          placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} />
-      </label>
+      <form onSubmit={(e) => e.preventDefault()} className={s.form}>
+          <h1 className={s.title}>Authorization</h1>
+          <label className={s.label}>
+              <AiOutlineUser className={s.icon} />
+              Login:
+              <input
+                  type="text"
+                  placeholder='Login'
+                  value={username}
+                  className={s.input}
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoComplete="username" // Добавлено
+              />
+          </label>
+          <label className={s.label}>
+              <AiOutlineLock className={s.icon} />
+              Password:
+              <input
+                  type="password"
+                  placeholder='password'
+                  value={password}
+                  className={s.input}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password" // Добавлено
+              />
+          </label>
 
-      <div>
-        <button type='submit' onClick={handleSubmit}>Enter</button>
-        <Link to={'/register'}>Don't have an account?</Link>
-      </div>
-    </form>
-  )
-}
+          <div className={s.buttonGroup}>
+              <button type='submit' className={s.submitButton} onClick={handleSubmit}>Enter</button>
+              <Link to={'/register'} className={s.link}>Do not have an account?</Link>
+          </div>
+      </form>
+  );
+};
 
-export default LoginPage
+
+export default LoginPage;

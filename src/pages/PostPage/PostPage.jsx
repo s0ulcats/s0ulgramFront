@@ -6,14 +6,13 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import s from './PostPage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePost } from '../../redux/post/postSlice.js';
-import { toast } from 'react-toastify';
 import { createComment, getPostComments } from '../../redux/features/comments/commentSlice.js';
 import CommentItem from '../../components/CommentItem/CommentItem.jsx';
+import Preloader from '../../components/Preloader/Preloader.jsx';
 
 const PostPage = () => {
   const [post, setPost] = useState(null);
   const [comment, setComment] = useState('');
-  const [error, setError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
@@ -24,10 +23,9 @@ const PostPage = () => {
     try {
       const postId = params.id;
       await dispatch(createComment({ postId, comment }));
-      setComment('');
+      setComment(''); // Очищаем поле ввода комментария
     } catch (error) {
-      setError('Failed to create comment. Please try again.');
-      console.log("Error during comment submit:", error);
+      console.error('Error creating comment:', error);
     }
   };
 
@@ -35,95 +33,88 @@ const PostPage = () => {
     try {
       await dispatch(getPostComments(params.id));
     } catch (error) {
-      setError('Failed to fetch comments. Please try again.');
+      console.error('Error fetching comments:', error);
     }
   }, [params.id, dispatch]);
 
-  const removePostHandler = async () => {
-    try {
-      await dispatch(removePost(params.id));
-      toast('Post was deleted');
-      navigate('/posts');
-    } catch (error) {
-      setError('Failed to delete post. Please try again.');
-      console.log(error);
-    }
-  };
-
-  const fetchPost = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`/posts/${params.id}`);
-      setPost(data);
-    } catch (error) {
-      setError('Failed to fetch post. Please try again.');
-      console.log('Error fetching post:', error);
-    }
-  }, [params.id]);
-
   useEffect(() => {
-    fetchComments();
+    fetchComments(); // Загружаем комментарии при монтировании компонента
   }, [fetchComments]);
 
   useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const { data } = await axios.get(`/posts/${params.id}`);
+        setPost(data);
+      } catch (error) {
+        console.error('Error fetching post:', error);
+      }
+    };
+
     fetchPost();
-  }, [fetchPost]);
+  }, [params.id]);
 
   if (!post) {
-    return <div className={s.post}>Loading...</div>;
+    return <Preloader />
   }
 
   return (
-    <div>
-      {error && <div>Error: {error}</div>}
+    <div className={s.container}>
+      <Link to="/" className={s.returnBtn}>Return</Link>
       <div className={s.postPage}>
-        <button>
-          <Link to="/">Return</Link>
-        </button>
-        <div>
-          {post.imgUrl && (
-            <img alt="img" src={`http://localhost:3001/${post.imgUrl}`} />
-          )}
-        </div>
+        {post.imgUrl && (
+          <div className={s.imgWrapper}>
+            <img alt="img" src={`http://localhost:3001/${post.imgUrl}`} className={s.image} />
+          </div>
+        )}
         <div className={s.postInfo}>
           <span>{post.username}</span>
           <Moment date={post.createdAt} format="D MMM YYYY" />
         </div>
-        <h2>{post.title}</h2>
-        <p>{post.text}</p>
+        <h2 className={s.title}>{post.title}</h2>
+        <p className={s.text}>{post.text}</p>
         <div className={s.postActions}>
-          <div>
-            <button>
+          <div className={s.stats}>
+            <button className={s.iconBtn}>
               <AiFillEye /> <span>{post.views}</span>
             </button>
-            <button>
+            <button className={s.iconBtn}>
               <AiOutlineMessage /> <span>{comments.length}</span>
             </button>
           </div>
 
           {user?._id === post.author && (
-            <div>
-              <button>
-                <Link to={`/${params.id}/edit`}>
+            <div className={s.actions}>
+              <button className={s.iconBtn}>
+                <Link to={`/post/${post._id}/edit`}>
                   <AiTwotoneEdit />
                 </Link>
               </button>
-              <button onClick={removePostHandler}>
+              <button className={s.iconBtn} onClick={() => dispatch(removePost(params.id))}>
                 <AiFillDelete />
               </button>
             </div>
           )}
         </div>
-      </div>
 
-      <div>
-        <form onSubmit={e => e.preventDefault()}>
-          <input value={comment} type="text" placeholder="Comment" onChange={e => setComment(e.target.value)} />
-          <button type="submit" onClick={handleSubmit}>Send</button>
-        </form>
+        <div className={s.comments}>
+          <h3>Comments</h3>
+          <div className={s.addComment}>
+            <input
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Add a comment"
+              className={s.commentInput}
+            />
+            <button onClick={handleSubmit} className={s.submitBtn}>Submit</button>
+          </div>
 
-        {Array.isArray(comments) && comments.map((cmt) => (
-          <CommentItem key={cmt._id} cmt={cmt} />
-        ))}
+          <div className={s.commentList}>
+            {Array.isArray(comments) && comments.map((cmt) => (
+              <CommentItem key={cmt._id} comment={cmt} />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { createPost } from '../../redux/post/postSlice';
+import { BsFillXOctagonFill, BsImage } from "react-icons/bs"; // Icons for image and cancel button
 import s from './AddPostPage.module.css';
 
 const AddPostPage = () => {
@@ -27,50 +28,66 @@ const AddPostPage = () => {
   const clearFormHandler = () => {
     setText('');
     setTitle('');
+    setImage('');
+  };
+
+  const detachImageHandler = () => {
+    setImage('');
   };
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className={s.addPostPage}>
-      <label>
+      <h1 className={s.title}>Add new post</h1>
+
+      <label className={s.fileInputLabel}>
+        <BsImage className={s.icon} /> {/* Icon for image upload */}
         Add image:
         <input
           type="file"
+          className={s.fileInput}
           onChange={(e) => setImage(e.target.files[0])}
         />
       </label>
 
-      <div>
+      <div className={s.imagePreviewContainer}>
         {image && (
-          <img
-            src={URL.createObjectURL(image)}
-            alt="img"
-            style={{ width: '100%', borderRadius: '12px', marginBottom: '20px' }}
-          />
+          <div className={s.imageWrapper}>
+            <img
+              src={URL.createObjectURL(image)}
+              alt="img"
+              className={s.imagePreview}
+            />
+            <button type="button" className={s.detachButton} onClick={detachImageHandler}>
+              <BsFillXOctagonFill />
+            </button>
+          </div>
         )}
       </div>
 
-      <label>
-        Post title:
+      <label className={s.inputLabel}>
+        Title:
         <input
           type="text"
-          placeholder="title"
+          placeholder="Title"
           value={title}
+          className={s.inputField}
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
 
-      <label>
-        Post text:
+      <label className={s.inputLabel}>
+        Text:
         <textarea
           value={text}
-          placeholder="Post text"
+          placeholder="Text"
+          className={s.textareaField}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
       </label>
 
-      <div>
-        <button onClick={submitHandler}>Add</button>
-        <button onClick={clearFormHandler}>Cancel</button>
+      <div className={s.buttonGroup}>
+        <button className={s.submitBtn} onClick={submitHandler}>Add</button>
+        <button className={s.cancelBtn} type="button" onClick={clearFormHandler}>Cancel</button>
       </div>
     </form>
   );

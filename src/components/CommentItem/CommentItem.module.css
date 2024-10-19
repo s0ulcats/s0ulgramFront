@@ -1,29 +1,38 @@
 .commentItem {
-  display: flex;
-  align-items: center;
-  background-color: #1a1a2e; /* Темно-синий фон */
-  color: #eaeaea; /* Светлый текст */
-  padding: 10px;
-  border-radius: 8px;
-  margin: 10px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack comment text and date */
+    background-color: #002b5c; /* Light background for comments */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Padding for better spacing */
+    margin: 10px 0; /* Margin between comments */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.avatar {
-  background-color: #ff6f61; /* Розовый цвет для аватара */
-  color: #ffffff; /* Белый текст для аватара */
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  font-weight: bold;
-  font-size: 1.2rem;
+.commentContent {
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
 }
 
 .commentText {
-  font-size: 1rem;
-  line-height: 1.5;
+    display: flex; /* Flexbox for icon and text alignment */
+    align-items: center; /* Center align items vertically */
+    color: #ff4081; /* Dark color for text */
+}
+
+.commentDate {
+    display: flex; /* Flexbox for icon and date alignment */
+    align-items: center; /* Center align items vertically */
+    color: #888; /* Gray color for date text */
+    margin-top: 5px; /* Space above the date */
+}
+
+.icon {
+    margin-right: 5px; /* Space between icon and text */
+    color: #ff79a9; /* Color for icons */
+}
+
+.errorMessage {
+    color: #e74c3c; /* Red color for error messages */
+    text-align: center; /* Center align error message */
+    font-weight: bold; /* Bold font for emphasis */
 }

@@ -22,9 +22,13 @@ const PostsPage = () => {
   }, []);
 
   return (
-    <div>
-      {error && <div>Error: {error}</div>}
-      {posts.map((post, idx) => <PostItem key={idx} post={post} />)}
+    <div className={s.container}>
+      {error && <div className={s.error}>{error}</div>}
+      <div className={s.postsGrid}>
+        {posts.map((post, idx) => (
+          <PostItem key={post._id} post={post} className={s.postItem} />
+        ))}
+      </div>
     </div>
   );
 };

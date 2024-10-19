@@ -1,16 +1,41 @@
 .popularPostsContainer {
-  background-color: #0a1e34; /* dark blue */
-  padding: 20px;
-  border-radius: 8px;
-  margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.popularPostItem {
+    background: #001936;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    transition: transform 0.3s;
+}
+
+.popularPostItem:hover {
+    transform: translateY(-3px);
 }
 
 .postTitle {
-  color: #1e90ff; /* light blue */
-  text-decoration: none;
-  transition: color 0.3s;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Title color */
+    text-decoration: none;
 }
 
-.postTitle:hover {
-  color: #ffffff; /* white */
+.postInfo {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #555; /* Info color */
+    margin-top: 5px;
+}
+
+.postAuthor, .postDate {
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    margin-right: 5px;
+    color: #007bff; /* Icon color */
+    font-size: 1rem; /* Adjust icon size */
 }

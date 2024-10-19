@@ -1,26 +1,72 @@
+/* Register.module.css */
+
 .form {
-  background-color: #0a1e34; /* dark blue */
-  padding: 20px;
-  border-radius: 8px;
-  color: #ffffff; /* white */
-}
-
-label {
-  display: block;
-  margin: 15px 0;
-}
-
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #1e90ff; /* light blue */
-  border-radius: 5px;
-  background-color: #1e1e1e; /* slightly lighter dark blue */
-  color: #ffffff; /* white */
-}
-
-button {
-  margin-top: 10px;
-  background-color: #1e90ff; /* light blue */
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #002b5c; /* Темно-синий фон */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    margin: auto;
+  }
+  
+  .title {
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+  }
+  
+  .input {
+    margin-left: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #003f7f; /* Более светлый синий фон для input */
+    color: white;
+    flex: 1;
+    outline: none;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .button {
+    padding: 10px 15px;
+    background-color: #ff4081; /* Розовый цвет кнопки */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .button:hover {
+    background-color: #e91e63; /* Более светлый оттенок розового при наведении */
+  }
+  
+  .link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .link:hover {
+    color: #ff4081; /* Розовый цвет ссылки при наведении */
+  }
+  
+  .icon {
+    font-size: 1.5rem;
+    color: #ff4081; /* Розовый цвет для иконок */
+  }
+  

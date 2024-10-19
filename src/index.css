@@ -1,11 +1,54 @@
+/* index.css */
+
+/* Устанавливаем глобальные стили для body */
 body {
-  font-family: "Ubuntu", sans-serif;
-  background: rgb(29, 0, 55);
-  background: linear-gradient(270deg, rgba(29, 0, 55, 1) 0%, rgba(0, 0, 55, 1) 100%);
-  color: #ff4081;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Шрифт для всего приложения */
+    background-color: #1f0045;
+    color: #ff4081; /* Темный текст */
+    line-height: 1.6; /* Высота строки для лучшей читаемости */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Убираем стандартные стили у ul и li */
+ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+}
+
+/* Убираем стандартные стили ссылок */
+a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: inherit; /* Устанавливаем цвет текста ссылок по умолчанию */
+}
+
+/* Добавляем стили для кнопок */
+button {
+    cursor: pointer; /* Курсор при наведении на кнопки */
+    border: none; /* Убираем рамки */
+    padding: 0.5rem 1rem; /* Отступы для кнопок */
+    border-radius: 5px; /* Закругленные углы */
+    background-color: #ff79a9; /* Цвет фона кнопок */
+    color: #ff4081; /* Цвет текста кнопок */
+    transition: background-color 0.3s ease; /* Плавный переход при наведении */
+}
+
+button:hover {
+    background-color: #ff5a8d; /* Цвет фона при наведении */
+}
+
+/* Стили для контейнера приложения */
+.container {
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    padding: 1rem; /* Отступы для контейнера */
+}
+
+/* Стили для сообщений об ошибках */
+.errorMessage {
+    color: #721c24; /* Цвет текста ошибок */
+    background-color: #f8d7da; /* Цвет фона ошибок */
+    border: 1px solid #f5c6cb; /* Рамка для сообщений об ошибках */
+    padding: 1rem; /* Отступы для сообщений об ошибках */
+    border-radius: 5px; /* Закругленные углы */
 }

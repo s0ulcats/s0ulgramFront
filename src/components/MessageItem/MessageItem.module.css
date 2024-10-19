@@ -1,29 +1,41 @@
-.commentItem {
-  display: flex;
-  align-items: center;
-  background-color: #1a1a2e; /* Темно-синий фон */
-  color: #eaeaea; /* Светлый текст */
-  padding: 10px;
-  border-radius: 8px;
-  margin: 10px 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+.messageContainer {
+    background-color: #002b5c; /* Light background for messages */
+    border-radius: 8px; /* Rounded corners */
+    padding: 12px; /* Padding inside the message */
+    margin: 10px 0; /* Margin between messages */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.avatar {
-  background-color: #ff6f61; /* Розовый цвет для аватара */
-  color: #ffffff; /* Белый текст для аватара */
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 10px;
-  font-weight: bold;
-  font-size: 1.2rem;
+.author {
+    font-weight: bold; /* Make author name bold */
+    display: flex; /* Align icon and text */
+    align-items: center; /* Center align vertically */
 }
 
-.commentText {
-  font-size: 1rem;
-  line-height: 1.5;
+.icon {
+    margin-right: 5px; /* Space between icon and text */
+    color: #ff79a9; /* Color for icons */
+}
+
+.messageText {
+    margin: 5px 0; /* Space above and below message text */
+    font-size: 16px; /* Font size for message */
+    line-height: 1.4; /* Spacing between lines */
+    color: #ff4081; /* Darker text color for readability */
+}
+
+.timestampContainer {
+    display: flex; /* Align icon and timestamp */
+    align-items: center; /* Center align vertically */
+    font-size: 12px; /* Smaller font size for timestamp */
+    color: #888; /* Gray color for timestamp */
+}
+
+.timeStamp {
+    margin-left: 5px; /* Space between icon and timestamp */
+}
+
+.errorMessage {
+    color: #ff4d4d; /* Red color for error message */
+    font-style: italic; /* Italics for error message */
 }

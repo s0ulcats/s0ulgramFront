@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import UserProfile from './UserPorifle';
+import UserProfile from './UserProfile';
 import { getUserById } from '../../redux/features/users/usersSlice';
 import { getAllPosts } from '../../redux/post/postSlice';
+import Preloader from '../Preloader/Preloader';
 
 const UserProfileContainer = () => {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const UserProfileContainer = () => {
     dispatch(getAllPosts(id)); // Получаем посты пользователя
   }, [dispatch, id]);
 
-  if (userLoading || postsLoading) return <div>Loading...</div>; // Отображаем индикатор загрузки
+  if (userLoading || postsLoading) return <Preloader />; // Отображаем индикатор загрузки
   if (userError || postsError) return <div>Error: {userError || postsError}</div>; // Обработка ошибок
 
   return <UserProfile user={user} posts={posts} />; // Передаем посты и пользователя в компонент

@@ -28,7 +28,7 @@ export const removePost = createAsyncThunk('post/removePost', async (id) => {
 
 export const updatePost = createAsyncThunk('post/updatePost', async ({ id, params }) => {
   try {
-    const { data } = await axios.patch(`/posts/${id}`, params);
+    const { data } = await axios.put(`/posts/${id}`, params)
     return data;
   } catch (error) {
     throw error;

@@ -1,0 +1,35 @@
+.dialogItem {
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Center align items vertically */
+    padding: 15px; /* Padding for better spacing */
+    background-color: #ffffff; /* White background for item */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+    margin: 10px 0; /* Margin between dialog items */
+}
+
+.dialogItem:hover {
+    background-color: #f0f0f0; /* Change background on hover */
+}
+
+.info {
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack username and date */
+    margin-left: 10px; /* Space between icon and text */
+}
+
+.username, .date {
+    display: flex; /* Flexbox for layout */
+    align-items: center; /* Center align icon and text */
+}
+
+.icon {
+    margin-right: 5px; /* Space between icon and text */
+    color: #ff79a9; /* Icon color */
+}
+
+.loading {
+    text-align: center; /* Center align loading message */
+    color: #888; /* Gray color for loading text */
+}

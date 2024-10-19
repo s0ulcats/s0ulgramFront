@@ -1,16 +1,56 @@
+/* MainPage.module.css */
+
 .main {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: #0a1e34; /* dark blue */
-  color: #ffffff; /* white */
-}
-
-.postsContainer {
-  flex: 1;
-}
-
-.popularPosts {
-  width: 300px;
-  margin-left: 20px;
-}
+    display: flex;
+    padding: 20px;
+    background-color: #001e3c; /* Темно-синий фон */
+  }
+  
+  .posts {
+    flex: 2;
+    margin-right: 20px;
+  }
+  
+  .postsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popularPosts {
+    flex: 1;
+    background-color: #002b5c; 
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .popularTitle {
+    color: #ff4081; /* Розовый цвет для заголовка популярных постов */
+    display: flex;
+    align-items: center;
+  }
+  
+  .popularIcon {
+    margin-right: 8px; /* Отступ для иконки */
+  }
+  
+  .popularPostsContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .loading {
+    color: white;
+    text-align: center;
+  }
+  
+  .error {
+    color: red;
+    text-align: center;
+  }
+  
+  .noPosts {
+    color: white;
+    text-align: center;
+  }
+  

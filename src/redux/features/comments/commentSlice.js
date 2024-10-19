@@ -8,27 +8,26 @@ const initialState = {
 
 export const createComment = createAsyncThunk(
   'comment/createComment',
-  async ({ postId, comment }) => {
+  async ({ postId, comment }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/comments/${postId}`, {
-        postId,
-        comment,
-      });
+      const { data } = await axios.post(`/comments/${postId}`, { postId, comment });
       return data;
     } catch (error) {
-      console.log(error);
+      console.log('Error creating comment:', error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
 
 export const getPostComments = createAsyncThunk(
   'comment/getPostComments',
-  async (postId) => {
+  async (postId, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(`/posts/comments/${postId}`);
       return data;
     } catch (error) {
-      console.log(error);
+      console.log('Error fetching post comments:', error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -44,24 +43,22 @@ export const commentSlice = createSlice({
       })
       .addCase(createComment.fulfilled, (state, action) => {
         state.loading = false;
-        if (Array.isArray(state.comments)) {
-          state.comments.push(action.payload); // Убедитесь, что это массив
-        } else {
-          state.comments = [action.payload]; // Если нет, создайте новый массив
-        }
+        state.comments.push(action.payload);
       })
-      .addCase(createComment.rejected, (state) => {
+      .addCase(createComment.rejected, (state, action) => {
         state.loading = false;
+        console.log('Create comment error:', action.payload);
       })
       .addCase(getPostComments.pending, (state) => {
         state.loading = true;
       })
       .addCase(getPostComments.fulfilled, (state, action) => {
         state.loading = false;
-        state.comments = Array.isArray(action.payload) ? action.payload : []; // Проверка на массив
+        state.comments = action.payload;
       })
-      .addCase(getPostComments.rejected, (state) => {
+      .addCase(getPostComments.rejected, (state, action) => {
         state.loading = false;
+        console.log('Fetch comments error:', action.payload);
       });
   },
 });

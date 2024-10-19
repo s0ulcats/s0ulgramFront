@@ -1,67 +1,50 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../../utils/axios.js';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   messages: [],
   loading: false,
+  error: null,
 };
 
+// Асинхронное действие для создания сообщения
 export const createMessage = createAsyncThunk(
-  'message/createMessage',
-  async ({ userId, message }) => {
+  'messages/createMessage',
+  async ({ dialogId, message }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/dialogs/${userId}`, {
-        userId,
-        message,
-      });
-      return data;
-    } catch (error) {
-      console.log(error);
+      const token = localStorage.getItem('token'); // Получаем токен из локального хранилища
+      const response = await axios.post(
+        `/api/messages/${dialogId}`,
+        { message },
+        { headers: { Authorization: `Bearer ${token}` } } // Отправляем токен в заголовке
+      );
+      return response.data; // Возвращаем данные нового сообщения
+    } catch (err) {
+      if (err.response && err.response.status === 403) {
+        console.error("Ошибка 403: Недостаточно прав для выполнения этого действия.");
+      }
+      return rejectWithValue(err.response.data); // Возвращаем ошибку
     }
   }
 );
 
-export const getUserMessage = createAsyncThunk(
-  'message/getUserMessage',
-  async (userId) => {
-    try {
-      const { data } = await axios.get(`/dialogs/${userId}`);
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
-export const messageSlice = createSlice({
-  name: 'message',
+const messageSlice = createSlice({
+  name: 'messages',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createMessage.pending, (state) => {
-        state.loading = true;
+        state.loading = true; // Устанавливаем статус загрузки
+        state.error = null; // Обнуляем ошибку при отправке нового сообщения
       })
       .addCase(createMessage.fulfilled, (state, action) => {
-        state.loading = false;
-        if (Array.isArray(state.messages)) {
-          state.messages.push(action.payload); // Убедитесь, что это массив
-        } else {
-          state.messages = [action.payload]; // Если нет, создайте новый массив
-        }
+        state.loading = false; // Завершаем статус загрузки
+        state.messages.push(action.payload); // Добавляем новое сообщение в массив
       })
-      .addCase(createMessage.rejected, (state) => {
-        state.loading = false;
-      })
-      .addCase(getUserMessage.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getUserMessage.fulfilled, (state, action) => {
-        state.loading = false;
-        state.messages = Array.isArray(action.payload) ? action.payload : []; // Проверка на массив
-      })
-      .addCase(getUserMessage.rejected, (state) => {
-        state.loading = false;
+      .addCase(createMessage.rejected, (state, action) => {
+        state.loading = false; // Завершаем статус загрузки
+        state.error = action.payload; // Устанавливаем ошибку
       });
   },
 });

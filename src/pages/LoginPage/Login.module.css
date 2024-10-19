@@ -1,26 +1,72 @@
 .form {
-  background-color: #0a1e34; /* dark blue */
-  padding: 20px;
-  border-radius: 8px;
-  color: #ffffff; /* white */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #002b5c; /* Фон страницы */
 }
 
-label {
-  display: block;
-  margin: 15px 0;
+.title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #ff4081;
 }
 
-input[type="text"],
-input[type="password"] {
+.label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #ff4081;
+}
+
+.icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem; /* Расстояние между иконкой и полем ввода */
+  color: #ff4081;
+}
+
+.input {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #1e90ff; /* light blue */
-  border-radius: 5px;
-  background-color: #1e1e1e; /* slightly lighter dark blue */
-  color: #ffffff; /* white */
+  padding: 0.75rem;
+  font-size: 1rem;
+  color: #ff4081;
+  background: none;
+  border: 1px solid #ff4081;
+  border-radius: 0.25rem;
+  margin-left: 0.5rem;
 }
 
-button {
-  margin-top: 10px;
-  background-color: #1e90ff; /* light blue */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submitButton {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.submitButton:hover {
+  background-color: #0056b3;
+}
+
+.link {
+  font-size: 1rem;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #0056b3;
 }

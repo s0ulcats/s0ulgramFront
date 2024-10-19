@@ -8,7 +8,6 @@ const initialState = {
     error: null,
 };
 
-
 // Асинхронный запрос для получения всех пользователей
 export const getAllUsers = createAsyncThunk('user/getAllUsers', async (_, { rejectWithValue }) => {
     try {
@@ -21,12 +20,21 @@ export const getAllUsers = createAsyncThunk('user/getAllUsers', async (_, { reje
 
 export const getUserById = createAsyncThunk('user/getUserById', async (id, { rejectWithValue }) => {
     try {
-        const { data } = await axios.get(`/users/${id}`); // Запрос на получение пользователя
+        const { data } = await axios.get(`/users/${id}`); // Исправлено
         return data;
     } catch (error) {
         return rejectWithValue(error.response?.data || 'Error fetching user');
     }
 });
+
+export const updateUsersStatus = createAsyncThunk('user/updateUsersStatus', async ({ id, params }) => {
+    try {
+      const { data } = await axios.put(`/users/${id}`, params)
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  });
 
 export const usersSlice = createSlice({
     name: 'user',

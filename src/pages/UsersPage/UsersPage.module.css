@@ -1,67 +1,61 @@
+/* UsersPage.module.css */
+
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 20px;
-    background: linear-gradient(135deg, #1d1f24, #2a2d35);
-    color: #fff;
-    min-height: 100vh;
-  }
-  
-  .returnButton {
-    background-color: #ff4081;
-    border: none;
-    padding: 10px 20px;
+    background-color: #002b5c; /* Темно-синий фон */
     border-radius: 8px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
-  .returnButton:hover {
-    background-color: #ff79a9;
+  .title {
+    color: #ff4081;
+    margin-bottom: 20px;
+    text-align: center;
   }
   
   .userItem {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
   }
   
   .userCard {
-    background: #2f3238;
-    border-radius: 12px;
-    padding: 15px;
-    width: 150px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    background-color: #003f7f; /* Светлее синий фон для карточки пользователя */
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
   }
   
   .userCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: #ff4081; /* Розовый фон при наведении */
+    transform: scale(1.02); /* Увеличение при наведении */
   }
   
   .avatar {
-    background-color: #ff4081;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    color: white;
-    margin: 0 auto 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #002b5c; /* Темно-синий фон для аватара */
+    color: #ff4081;
     font-weight: bold;
+    font-size: 1.5rem;
+    margin-right: 10px;
   }
   
   .username {
-    color: #ff79a9;
-    font-size: 16px;
-    font-weight: bold;
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  .userIcon {
+    color: #ff4081; /* Розовый цвет иконки */
   }
   

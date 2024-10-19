@@ -3,7 +3,9 @@ import PostItem from '../../components/PostItem/PostItem.jsx';
 import PopularPosts from '../../components/PopularPosts/PopularPosts.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../../redux/post/postSlice.js';
+import { AiOutlineFire } from 'react-icons/ai'; // Иконка для популярности
 import s from './MainPage.module.css';
+import Preloader from '../../components/Preloader/Preloader.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -13,37 +15,35 @@ const MainPage = () => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log('Posts:', posts);
-  }, [posts]);
-
   if (loading) {
-    return <div>Loading...</div>;
+    return <Preloader />
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className={s.error}>Error: {error}</div>;
   }
 
   if (!posts || !posts.length) {
-    return <div>Posts don’t exist</div>;
+    return <div className={s.noPosts}>Posts don’t exist</div>;
   }
 
   return (
     <div className={s.main}>
       <div className={s.posts}>
         <div className={s.postsContainer}>
-          {posts.map((post, idx) => (
-            <PostItem key={idx} post={post} />
+          {posts.map(post => (
+            <PostItem key={post._id} post={post} />
           ))}
         </div>
       </div>
 
       <div className={s.popularPosts}>
-        <h2>Popular Posts:</h2>
+        <h2 className={s.popularTitle}>
+          <AiOutlineFire className={s.popularIcon} /> Popular Posts:
+        </h2>
         <div className={s.popularPostsContainer}>
-          {popularPosts.map((post, idx) => (
-            <PopularPosts key={idx} post={post} />
+          {popularPosts.map(post => (
+            <PopularPosts key={post._id} post={post} />
           ))}
         </div>
       </div>

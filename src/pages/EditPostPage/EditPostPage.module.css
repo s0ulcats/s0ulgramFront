@@ -1,0 +1,102 @@
+.editPostPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #002b5c;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .fileInputLabel {
+    font-size: 1rem;
+    color: #ff4081;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .fileInput {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    color: #ff4081;
+    font-size: 1rem;
+  }
+  
+  .icon {
+    margin-right: 0.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .imagePreviewContainer {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  
+  .imagePreview {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+  }
+  
+  .inputField, .textareaField {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ff4081;
+    color: #ff4081;
+    border-radius: 4px;
+    background: none;
+  }
+  
+  .textareaField {
+    height: 150px;
+    resize: none;
+    background: none;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .saveButton, .cancelButton {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .saveButton {
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+  
+  .saveButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .cancelButton {
+    background-color: #ccc;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cancelButton:hover {
+    background-color: #999;
+  }
+  
+  .iconButton {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  

@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import axios from '../../utils/axios.js'
+import axios from '../../utils/axios.js';
 import s from './EditPostPage.module.css';
 import { updatePost } from '../../redux/post/postSlice.js';
+import { AiOutlineFileImage, AiOutlineEdit, AiOutlineSave, AiOutlineClose } from 'react-icons/ai'; // Иконки для полей и кнопок
 
 const EditPostPage = () => {
   const [title, setTitle] = useState('');
@@ -12,95 +13,108 @@ const EditPostPage = () => {
   const [newImage, setNewImage] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const params = useParams()
+  const params = useParams();
 
-  const submitHandler = () => {
+  const submitHandler = async (e) => {
+    e.preventDefault();
     try {
-      const updatedPost = new FormData()
-      updatedPost.append('title', title)
-      updatedPost.append('text', text)
-      updatedPost.append('id', params.id)
-      updatedPost.append('image', newImage)
-      dispatch(updatePost(updatedPost))
-      navigate('/posts')
+      const updatedPost = new FormData();
+      updatedPost.append('title', title);
+      updatedPost.append('text', text);
+      updatedPost.append('id', params.id);
+  
+      if (newImage) {
+        updatedPost.append('image', newImage);
+      }
+  
+      await dispatch(updatePost({ id: params.id, params: updatedPost })).unwrap();
+      navigate(`/posts`);
     } catch (error) {
-      console.log(error);
-      
+      console.error('Error updating post:', error); // Для отладки
     }
-  }
+  };
 
   const clearFormHandler = () => {
-    setTitle('')
-    setText('')
-  }
-
+    setTitle('');
+    setText('');
+  };
 
   const fetchPost = useCallback(async () => {
-    const { data } = await axios.get(`/posts/${params.id}`)
-    setTitle(data.title)
-    setText(data.text)
-    setOldImage(data.imgUrl)
+    const { data } = await axios.get(`/posts/${params.id}`);
+    setTitle(data.title);
+    setText(data.text);
+    setOldImage(data.imgUrl);
   }, [params.id]);
 
   useEffect(() => {
-    fetchPost()
-  }, [fetchPost])
+    fetchPost();
+  }, [fetchPost]);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className={s.addPostPage}>
-      <label>
+    <form onSubmit={submitHandler} className={s.editPostPage}>
+      <label className={s.fileInputLabel}>
+        <AiOutlineFileImage className={s.icon} /> {/* Иконка для загрузки изображения */}
         Add image:
         <input
           type="file"
-          onChange={(e) => 
-          {  setNewImage(e.target.files[0])
-            setOldImage('')}
-          }
+          className={s.fileInput}
+          onChange={(e) => {
+            setNewImage(e.target.files[0]);
+            setOldImage('');
+          }}
         />
       </label>
 
-      <div>
+      <div className={s.imagePreviewContainer}>
         {oldImage && (
           <img
             src={`http://localhost:3001/${oldImage}`}
             alt={oldImage.name}
-            style={{ width: '100%', borderRadius: '12px', marginBottom: '20px' }}
+            className={s.imagePreview}
           />
         )}
         {newImage && (
           <img
             src={URL.createObjectURL(newImage)}
             alt={newImage.name}
-            style={{ width: '100%', borderRadius: '12px', marginBottom: '20px' }}
+            className={s.imagePreview}
           />
         )}
       </div>
 
       <label>
-        Post title:
+        <AiOutlineEdit className={s.icon} /> {/* Иконка для заголовка */}
+        Title:
         <input
           type="text"
           placeholder="title"
           value={title}
+          className={s.inputField}
           onChange={(e) => setTitle(e.target.value)}
         />
       </label>
 
       <label>
-        Post text:
+        <AiOutlineEdit className={s.icon} /> {/* Иконка для текста */}
+        Text:
         <textarea
           value={text}
           placeholder="Post text"
+          className={s.textareaField}
           onChange={(e) => setText(e.target.value)}
         ></textarea>
       </label>
 
-      <div>
-        <button onClick={submitHandler}>Save</button>
-        <button onClick={clearFormHandler}>Cancel</button>
+      <div className={s.buttonGroup}>
+        <button type="submit" className={s.saveButton}>
+          <AiOutlineSave className={s.iconButton} /> Save {/* Иконка на кнопке "Сохранить" */}
+        </button>
+        <button type="button" className={s.cancelButton} onClick={clearFormHandler}>
+          <AiOutlineClose className={s.iconButton} /> Cancel {/* Иконка на кнопке "Отмена" */}
+        </button>
       </div>
     </form>
   );
-}
+};
 
-export default EditPostPage
+export default EditPostPage;
