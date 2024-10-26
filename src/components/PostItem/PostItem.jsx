@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AiFillEye, AiOutlineMessage } from 'react-icons/ai';
 import Moment from 'react-moment';
-import s from './PostItem.module.css';
+import s from './PostItem.module.scss';
 import { NavLink } from 'react-router-dom';
+import { ThemeContext } from '../ThemeContext/ThemeContext';
 
 const PostItem = ({ post }) => {
+    const { theme } = useContext(ThemeContext)
     if (!post) {
         return <div className={s.post}>Загрузка...</div>;
     }
 
     return (
         <NavLink to={`/post/${post._id}`} className={s.link}>
-            <div className={s.post}>
+            <div className={`${s.post} ${theme === 'dark' ? s.dark : s.light}`}>
                 {post.imgUrl ? (
                     <div className={s.imageWrapper}>
                         <img alt='img' src={`http://localhost:3001/${post.imgUrl}`} className={s.image} />
                     </div>
                 ) : (
-                    <div className={s.placeholder}>
+                    <div className={`${s.placeholder} ${theme === 'dark' ? s.dark : s.light}`}>
                         <span>{post.title}</span>
                     </div>
                 )}
@@ -27,8 +29,8 @@ const PostItem = ({ post }) => {
                         <Moment date={post.createdAt} format='D MMM YYYY' />
                     </div>
                 </div>
-                <div className={s.title}>{post.title}</div>
-                <p className={s.text}>{post.text}</p>
+                <div className={`${s.title} ${theme === 'dark' ? s.dark : s.light}`}>{post.title}</div>
+                <p className={`${s.text} ${theme === 'dark' ? s.dark : s.light}`}>{post.text}</p>
 
                 <div className={s.stats}>
                     <div className={s.statItem}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import { AiOutlineUser, AiOutlineClockCircle } from 'react-icons/ai'; // Импортируем иконки
-import s from './MessageItem.module.css';
+import s from './MessageItem.module.scss';
 
 const MessageItem = ({ message }) => {
   if (!message || !message.author) {

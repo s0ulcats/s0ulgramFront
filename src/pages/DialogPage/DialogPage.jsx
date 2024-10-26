@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { AiOutlineSend, AiOutlineMessage } from 'react-icons/ai'; // Importing icons
 import axios from '../../utils/axios';
-import s from './DialogPage.module.css'; // Importing CSS module
+import s from './DialogPage.module.scss'; // Importing CSS module
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 
 const DialogPage = () => {
     const { id: dialogId } = useParams(); // Get dialogId from route parameters
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+    const { theme } = useContext(ThemeContext)
 
     const fetchMessages = async () => {
         if (!dialogId) {
@@ -48,26 +50,25 @@ const DialogPage = () => {
     };
 
     return (
-        <div className={s.dialogPage}>
-            <h1 className={s.title}>Диалог</h1>
-            <div className={s.messagesContainer}>
+        <div className={`${s.dialogPage} ${theme === 'dark' ? s.dark : s.light}`}>
+            <div className={`${s.messagesContainer} ${theme === 'dark' ? s.dark : s.light}`}>
                 {messages.map(msg => (
-                    <div key={msg._id} className={s.message}>
+                    <div key={msg._id} className={`${s.message} ${theme === 'dark' ? s.dark : s.light}`}>
                         <AiOutlineMessage className={s.messageIcon} /> {/* Message icon */}
-                        <strong className={s.author}>{msg.author?.username || 'Unavailable author'}</strong>: 
-                        <span className={s.content}>{msg.message || 'Not message'}</span>
+                        <strong className={`${s.author} ${theme === 'dark' ? s.dark : s.light}`}>{msg.author?.username || 'Unavailable author'}:</strong>
+                        <span className={`${s.content} ${theme === 'dark' ? s.dark : s.light}`}>{msg.message || 'Not message'}</span>
                     </div>
                 ))}
             </div>
-            <form onSubmit={handleSubmit} className={s.inputForm}>
+            <form onSubmit={handleSubmit} className={`${s.inputForm} ${theme === 'dark' ? s.dark : s.light}`}>
                 <input 
                     type="text" 
                     value={message} 
                     onChange={e => setMessage(e.target.value)} 
                     placeholder="Enter message" 
-                    className={s.inputField}
+                    className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
                 />
-                <button type="submit" className={s.sendButton}>
+                <button type="submit" className={`${s.sendButton} ${theme === 'dark' ? s.dark : s.light}`}>
                     Send <AiOutlineSend className={s.sendIcon} /> {/* Send icon */}
                 </button>
             </form>

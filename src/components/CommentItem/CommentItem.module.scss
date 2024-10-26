@@ -1,0 +1,63 @@
+$color_1: #ff4081;
+$color_2: #888;
+$color_3: #ff79a9;
+$color_4: #e74c3c;
+$color_5: black;
+$color_6: rgb(40, 40, 40);
+$background-color_1: #002b5c;
+$background-color_2: #ac88fd;
+$background-color_3: #bda0ff;
+
+.commentItem {
+	display: flex;
+	flex-direction: column;
+	border-radius: 8px;
+	padding: 10px;
+	margin: 10px 0;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.commentItem.dark{
+	background-color: $background-color_1;
+}
+.commentItem.light{
+	background-color: $background-color_2;
+}
+.commentContent {
+	display: flex;
+	flex-direction: column;
+}
+.commentText {
+	display: flex;
+	align-items: center;
+}
+.commentText.dark{
+	color: $color_1;
+}
+.commentText.light{
+	color: $color_5;
+}
+.commentDate {
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+}
+.commentDate.dark {
+	color: $color_2;
+}
+.commentDate.light {
+	color: $color_6;
+}
+.icon {
+	margin-right: 5px;
+}
+.icon.dark {
+	color: $color_3;
+}
+.icon.light {
+	color: $color_5;
+}
+.errorMessage {
+	color: $color_4;
+	text-align: center;
+	font-weight: bold;
+}

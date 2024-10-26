@@ -1,0 +1,65 @@
+$color_1: #ff4081;
+$color_2: white;
+$color_3: red;
+$background-color_1: #001e3c;
+$background-color_2: #002b5c;
+$background-color_3: #d9c9fe;
+$background-color_4: #c0b1e2;
+
+/* Темная тема */
+/* Светлая тема */
+.main {
+	display: flex;
+	padding: 20px;
+	transition: background-color 0.3s ease;
+}
+.main.dark {
+	background-color: $background-color_1;
+}
+.popularPosts.dark {
+	background-color: $background-color_2;
+}
+.main.light {
+	background-color: $background-color_3;
+}
+.popularPosts.light {
+	background-color: $background-color_4;
+}
+.posts {
+	flex: 2;
+	margin-right: 20px;
+}
+.postsContainer {
+	display: flex;
+	flex-direction: column;
+}
+.popularPosts {
+	flex: 1;
+	padding: 15px;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.popularTitle {
+	color: $color_1;
+	display: flex;
+	align-items: center;
+}
+.popularIcon {
+	margin-right: 8px;
+}
+.popularPostsContainer {
+	display: flex;
+	flex-direction: column;
+}
+.loading {
+	color: $color_2;
+	text-align: center;
+}
+.error {
+	color: $color_3;
+	text-align: center;
+}
+.noPosts {
+	color: $color_2;
+	text-align: center;
+}

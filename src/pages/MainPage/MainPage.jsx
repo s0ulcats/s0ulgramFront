@@ -1,34 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PostItem from '../../components/PostItem/PostItem.jsx';
 import PopularPosts from '../../components/PopularPosts/PopularPosts.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../../redux/post/postSlice.js';
-import { AiOutlineFire } from 'react-icons/ai'; // Иконка для популярности
-import s from './MainPage.module.css';
+import { AiOutlineFire } from 'react-icons/ai';
+import s from './MainPage.module.scss';
 import Preloader from '../../components/Preloader/Preloader.jsx';
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const { posts, popularPosts, loading, error } = useSelector(state => state.post);
+  const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
   if (loading) {
-    return <Preloader />
+    return <Preloader />;
   }
 
   if (error) {
     return <div className={s.error}>Error: {error}</div>;
   }
 
-  if (!posts || !posts.length) {
-    return <div className={s.noPosts}>Posts don’t exist</div>;
-  }
-
   return (
-    <div className={s.main}>
+    <div className={`${s.main} ${theme === 'dark' ? s.dark : s.light}`}>
       <div className={s.posts}>
         <div className={s.postsContainer}>
           {posts.map(post => (

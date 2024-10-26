@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from '../../utils/axios.js';
 import PostItem from '../../components/PostItem/PostItem.jsx';
-import s from './PostsPage.module.css';
+import s from './PostsPage.module.scss';
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
+  const { theme } = useContext(ThemeContext)
 
   const fetchMyPosts = async () => {
     try {
@@ -22,7 +24,7 @@ const PostsPage = () => {
   }, []);
 
   return (
-    <div className={s.container}>
+    <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
       {error && <div className={s.error}>{error}</div>}
       <div className={s.postsGrid}>
         {posts.map((post, idx) => (

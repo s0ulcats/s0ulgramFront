@@ -1,13 +1,15 @@
-import React from 'react';
-import s from './UserProfile.module.css';
+import React, { useContext } from 'react';
+import s from './UserProfile.module.scss';
 import PostItem from '../PostItem/PostItem';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Preloader from '../Preloader/Preloader';
+import { ThemeContext } from '../ThemeContext/ThemeContext';
 
 const UserProfile = ({ user, posts }) => {
   const navigate = useNavigate();
   const { user: myProfile, loading, error } = useSelector((state) => state.user);
+  const { theme } = useContext(ThemeContext)
 
   if (!user) {
     return <Preloader />
@@ -21,13 +23,13 @@ const UserProfile = ({ user, posts }) => {
   };
 
   return (
-    <div className={s.profileContainer}>
+    <div className={`${s.profileContainer} ${theme === 'dark' ? s.dark : s.light}`}>
       <div className={s.info}>
         <div className={s.avatar}>{avatar}</div>
         <div className={s.details}>
           <div className={s.username}>{user.username}</div>
           <div className={s.status}>{user.status || ''}</div>
-          <button className={s.directButton} onClick={handleDirectClick}>
+          <button className={`${s.directButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={handleDirectClick}>
             Direct
           </button>
         </div>

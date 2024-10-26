@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import axios from '../../utils/axios.js';
-import s from './EditPostPage.module.css';
+import s from './EditPostPage.module.scss';
 import { updatePost } from '../../redux/post/postSlice.js';
 import { AiOutlineFileImage, AiOutlineEdit, AiOutlineSave, AiOutlineClose } from 'react-icons/ai'; // Иконки для полей и кнопок
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 
 const EditPostPage = () => {
   const [title, setTitle] = useState('');
@@ -14,6 +15,7 @@ const EditPostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const { theme } = useContext(ThemeContext)
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -51,7 +53,7 @@ const EditPostPage = () => {
   }, [fetchPost]);
 
   return (
-    <form onSubmit={submitHandler} className={s.editPostPage}>
+    <form onSubmit={submitHandler} className={`${s.editPostPage} ${theme === 'dark' ? s.dark : s.light}`}>
       <label className={s.fileInputLabel}>
         <AiOutlineFileImage className={s.icon} /> {/* Иконка для загрузки изображения */}
         Add image:
@@ -109,7 +111,7 @@ const EditPostPage = () => {
         <button type="submit" className={s.saveButton}>
           <AiOutlineSave className={s.iconButton} /> Save {/* Иконка на кнопке "Сохранить" */}
         </button>
-        <button type="button" className={s.cancelButton} onClick={clearFormHandler}>
+        <button type="button" className={`${s.cancelButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={clearFormHandler}>
           <AiOutlineClose className={s.iconButton} /> Cancel {/* Иконка на кнопке "Отмена" */}
         </button>
       </div>

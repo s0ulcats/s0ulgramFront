@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUsersStatus } from '../../redux/features/users/usersSlice';
-import s from './StatusEditor.module.css';
+import s from './StatusEditor.module.scss';
 import { AiOutlineEdit, AiOutlineCheck, AiOutlineClose } from 'react-icons/ai'; // Импорт иконок из React Icons
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 
 const StatusEditor = ({ initialStatus, userId }) => {
     const [isEditing, setIsEditing] = useState(false);
     const [status, setStatus] = useState(initialStatus || '');
     const dispatch = useDispatch();
+    const { theme } = useContext(ThemeContext)
 
     const handleDoubleClick = () => {
         setIsEditing(true);
@@ -25,7 +27,7 @@ const StatusEditor = ({ initialStatus, userId }) => {
     };
 
     return (
-        <div className={s.statusEditor} onDoubleClick={handleDoubleClick}>
+        <div className={`${s.statusEditor} ${theme === 'dark' ? s.dark : s.light}`} onDoubleClick={handleDoubleClick}>
             {isEditing ? (
                 <div className={s.editContainer}>
                     <input
@@ -34,7 +36,7 @@ const StatusEditor = ({ initialStatus, userId }) => {
                         onChange={handleStatusChange}
                         onBlur={handleBlur}
                         autoFocus
-                        className={s.input} // Применяем стили к input
+                        className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`} // Применяем стили к input
                     />
                     <AiOutlineCheck className={s.icon} onClick={handleBlur} /> {/* Иконка подтверждения */}
                     <AiOutlineClose className={s.icon} onClick={() => { setStatus(initialStatus); setIsEditing(false); }} /> {/* Иконка отмены */}

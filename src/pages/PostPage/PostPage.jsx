@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { AiFillEye, AiOutlineMessage, AiTwotoneEdit, AiFillDelete } from 'react-icons/ai';
 import Moment from 'react-moment';
 import axios from '../../utils/axios.js';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import s from './PostPage.module.css';
+import s from './PostPage.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePost } from '../../redux/post/postSlice.js';
 import { createComment, getPostComments } from '../../redux/features/comments/commentSlice.js';
 import CommentItem from '../../components/CommentItem/CommentItem.jsx';
 import Preloader from '../../components/Preloader/Preloader.jsx';
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 
 const PostPage = () => {
   const [post, setPost] = useState(null);
@@ -18,6 +19,7 @@ const PostPage = () => {
   const { user } = useSelector((state) => state.auth);
   const { comments = [], loading } = useSelector((state) => state.comment);
   const params = useParams();
+  const { theme } = useContext(ThemeContext); // Получаем тему из контекста
 
   const handleSubmit = async () => {
     try {
@@ -59,7 +61,7 @@ const PostPage = () => {
   }
 
   return (
-    <div className={s.container}>
+    <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
       <Link to="/" className={s.returnBtn}>Return</Link>
       <div className={s.postPage}>
         {post.imgUrl && (
@@ -85,12 +87,12 @@ const PostPage = () => {
 
           {user?._id === post.author && (
             <div className={s.actions}>
-              <button className={s.iconBtn}>
+              <button className={`${s.iconBtn} ${theme === 'dark' ? s.dark : s.light}`}>
                 <Link to={`/post/${post._id}/edit`}>
                   <AiTwotoneEdit />
                 </Link>
               </button>
-              <button className={s.iconBtn} onClick={() => dispatch(removePost(params.id))}>
+              <button className={`${s.iconBtn} ${theme === 'dark' ? s.dark : s.light}`} onClick={() => dispatch(removePost(params.id))}>
                 <AiFillDelete />
               </button>
             </div>
@@ -104,7 +106,7 @@ const PostPage = () => {
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder="Add a comment"
-              className={s.commentInput}
+              className={`${s.commentInput} ${theme === 'dark' ? s.dark : s.light}`}
             />
             <button onClick={handleSubmit} className={s.submitBtn}>Submit</button>
           </div>

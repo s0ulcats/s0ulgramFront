@@ -1,11 +1,8 @@
-/* index.css */
-
-/* Устанавливаем глобальные стили для body */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif; /* Шрифт для всего приложения */
-    background-color: #1f0045;
+    background-color: #1f0045; /* Темный фон по умолчанию */
     color: #ff4081; /* Темный текст */
     line-height: 1.6; /* Высота строки для лучшей читаемости */
 }

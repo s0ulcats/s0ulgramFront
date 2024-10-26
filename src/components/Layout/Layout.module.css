@@ -15,6 +15,28 @@
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
+/* Темная тема */
+.container.dark {
+    background-color: #0e0045; /* Темный фон */
+    color: white;
+}
+
+.content.dark {
+    background-color: #13025b;
+    color: white;
+}
+
+/* Светлая тема */
+.container.light {
+    background-color: #dcd0f9; /* Белый фон */
+    color: black;
+}
+
+.content.light {
+    background-color: #e1d6fc;
+    color: black;
+}
+
 
 @media (max-width: 768px) {
     .content {

@@ -1,0 +1,91 @@
+$color_1: rgb(0, 0, 0);
+$color_2: white;
+$color_3: #ff4081;
+$color_4: #b82c5b;
+$background-color_1: #002b5c;
+$background-color_2: #003f7f;
+$background-color_3: #ff4081;
+$background-color_4: #e91e63;
+$background-color_5: #bda0ff;
+$background-color_6: #d2c1fa;
+
+/* Register.module.css */
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	width: 300px;
+	margin: auto;
+}
+.form.dark {
+	color: $color_2;
+	background-color: $background-color_1;
+}
+.form.light {
+	color: $color_1;
+	background-color: $background-color_5;
+}
+.title {
+	margin-bottom: 20px;
+}
+label {
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+	width: 100%;
+}
+.input {
+	margin-left: 10px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	flex: 1;
+	outline: none;
+}
+.input.dark {
+	background-color: $background-color_2;
+	&::placeholder {
+		color: $color_2;
+	}
+}
+.input.light {
+	background-color: $background-color_6;
+	&::placeholder {
+		color: $color_1;
+	}
+}
+.actions {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.button {
+	padding: 10px 15px;
+	background-color: $background-color_3;
+	color: $color_1;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	&:hover {
+		background-color: $background-color_4;
+	}
+}
+.link {
+	color: $color_1;
+	text-decoration: none;
+	transition: color 0.2s;
+	&.dark:hover {
+		color: $color_3;
+	}
+	&.light:hover {
+		color: $color_4;
+	}
+}
+.icon {
+	font-size: 1.5rem;
+	color: $color_3;
+}

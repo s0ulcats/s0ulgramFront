@@ -1,0 +1,126 @@
+$color_1: #ff4081;
+$color_2: #fff;
+$color_3: #333;
+$background-color_1: #002b5c;
+$background-color_2: #007bff;
+$background-color_3: #0056b3;
+$background-color_4: #ccc;
+$background-color_5: #999;
+$background-color_6: #bda0ff;
+$background-color_7: #d2c1fa;
+$background-color_8: rgb(44, 44, 44);
+
+.editPostPage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem;
+	border-radius: 8px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+.editPostPage.dark {
+	background-color: $background-color_1;
+}
+.editPostPage.light {
+	background-color: $background-color_7;
+}
+.fileInputLabel {
+	font-size: 1rem;
+	color: $color_1;
+	margin-bottom: 1rem;
+	display: flex;
+	align-items: center;
+}
+.fileInput {
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	color: $color_1;
+	font-size: 1rem;
+}
+.icon {
+	margin-right: 0.5rem;
+	font-size: 1.5rem;
+}
+.imagePreviewContainer {
+	display: flex;
+	justify-content: center;
+	margin: 1rem 0;
+}
+.imagePreview {
+	max-width: 100%;
+	max-height: 300px;
+	border-radius: 8px;
+}
+.inputField {
+	width: 100%;
+	padding: 0.75rem;
+	font-size: 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid #ff4081;
+	color: $color_1;
+	border-radius: 4px;
+	background: none;
+}
+.textareaField {
+	width: 100%;
+	padding: 0.75rem;
+	font-size: 1rem;
+	margin-bottom: 1rem;
+	border: 1px solid #ff4081;
+	color: $color_1;
+	border-radius: 4px;
+	background: none;
+	height: 150px;
+	resize: none;
+	background: none;
+}
+.buttonGroup {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.saveButton {
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	background-color: $background-color_2;
+	color: $color_2;
+	transition: background-color 0.3s ease;
+	&:hover {
+		background-color: $background-color_3;
+	}
+}
+.cancelButton {
+	padding: 0.75rem 1.5rem;
+	font-size: 1rem;
+	cursor: pointer;
+	border: none;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	transition: background-color 0.3s ease;
+}
+.cancelButton.dark {
+	background-color: $background-color_4;
+	color: $color_3;
+	&.dark:hover {
+		background-color: $background-color_5;
+	}
+}
+.cancelButton.light {
+	background-color: $background-color_8;
+	color: $color_1;
+	&.light:hover {
+		background-color: $background-color_5;
+	}
+}
+.iconButton {
+	margin-right: 0.5rem;
+	font-size: 1.2rem;
+}

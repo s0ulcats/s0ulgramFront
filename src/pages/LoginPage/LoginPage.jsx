@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import s from './Login.module.css';
+import React, { useState, useEffect, useContext } from 'react';
+import s from './Login.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkIsAuth, loginUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
 import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai'; // Иконки для полей ввода
+import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -13,6 +14,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuth = useSelector(checkIsAuth);
+  const { theme } = useContext(ThemeContext)
 
   useEffect(() => {
       const token = window.localStorage.getItem('token');
@@ -27,12 +29,12 @@ const LoginPage = () => {
           setPassword('');
           setUsername('');
       } catch (error) {
-          toast.error('Invalid username or password!'); // Уведомление об ошибке
+        toast.error('Ivalid Credentials')
       }
   };
 
   return (
-      <form onSubmit={(e) => e.preventDefault()} className={s.form}>
+      <form onSubmit={(e) => e.preventDefault()} className={`${s.form} ${theme === 'dark' ? s.dark : s.light}`}>
           <h1 className={s.title}>Authorization</h1>
           <label className={s.label}>
               <AiOutlineUser className={s.icon} />
@@ -41,7 +43,7 @@ const LoginPage = () => {
                   type="text"
                   placeholder='Login'
                   value={username}
-                  className={s.input}
+                  className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
                   onChange={(e) => setUsername(e.target.value)}
                   autoComplete="username" // Добавлено
               />
@@ -53,7 +55,7 @@ const LoginPage = () => {
                   type="password"
                   placeholder='password'
                   value={password}
-                  className={s.input}
+                  className={`${s.input} ${theme === 'dark' ? s.dark : s.light}`}
                   onChange={(e) => setPassword(e.target.value)}
                   autoComplete="current-password" // Добавлено
               />
@@ -61,7 +63,7 @@ const LoginPage = () => {
 
           <div className={s.buttonGroup}>
               <button type='submit' className={s.submitButton} onClick={handleSubmit}>Enter</button>
-              <Link to={'/register'} className={s.link}>Do not have an account?</Link>
+              <Link to={'/register'} className={`${s.link} ${theme === 'dark' ? s.dark : s.light}`}>Do not have an account?</Link>
           </div>
       </form>
   );
