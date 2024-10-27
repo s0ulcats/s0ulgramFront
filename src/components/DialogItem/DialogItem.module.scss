@@ -4,36 +4,88 @@ $background-color_1: #ffffff;
 $background-color_2: #f0f0f0;
 
 .dialogItem {
-	display: flex;
-	align-items: center;
-	padding: 15px;
-	background-color: $background-color_1;
-	border-radius: 8px;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-	transition: background-color 0.3s;
-	margin: 10px 0;
-	&:hover {
-		background-color: $background-color_2;
-	}
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: $background-color_1;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+  margin: 10px 0;
+
+  &:hover {
+    background-color: $background-color_2;
+  }
+
+  @media (max-width: 600px) {
+    padding: 12px;
+    margin: 8px 0;
+  }
+
+  @media (max-width: 900px) {
+    padding: 13px;
+    margin: 9px 0;
+  }
 }
+
 .info {
-	display: flex;
-	flex-direction: column;
-	margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+
+  @media (max-width: 600px) {
+    margin-left: 8px;
+  }
 }
+
 .username {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 15px;
+  }
 }
+
 .date {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 13px;
+  }
 }
+
 .icon {
-	margin-right: 5px;
-	color: $color_1;
+  margin-right: 5px;
+  color: $color_1;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 14px;
+  }
 }
+
 .loading {
-	text-align: center;
-	color: $color_2;
+  text-align: center;
+  color: $color_2;
+
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 900px) {
+    font-size: 15px;
+  }
 }

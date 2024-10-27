@@ -7,97 +7,115 @@ $background-color_3: #ff79a9;
 $background-color_4: #bda0ff;
 $background-color_5: #d2c1fa;
 
-/* Mobile Styles */
 .profileContainer {
-	padding: 20px;
-	border-radius: 10px;
-	max-width: 800px;
-	margin: 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
 .profileContainer.dark {
-	background-color: $background-color_1;
-	color: $color_1;
+  background-color: $background-color_1;
+  color: $color_1;
 }
+
 .profileContainer.light {
-	background-color: $background-color_5;
-	color: $color_3;
+  background-color: $background-color_5;
+  color: $color_3;
 }
+
 .info {
-	display: flex;
-	align-items: center;
-	margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
+
 .avatar {
-	background-color: $background-color_2;
-	color: $color_1;
-	width: 60px;
-	height: 60px;
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 24px;
-	font-weight: bold;
-	margin-right: 15px;
+  background-color: $background-color_2;
+  color: $color_1;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 15px;
 }
+
 .details {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
+
 .username {
-	font-size: 20px;
-	font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
+
 .status {
-	font-size: 14px;
+  font-size: 14px;
 }
+
 .status.dark {
-	color: $color_2;
+  color: $color_2;
 }
+
 .status.light {
-	color: $color_3;
+  color: $color_3;
 }
+
 .directButton {
-	margin-top: 10px;
-	background-color: $background-color_2;
-	border: none;
-	padding: 8px 16px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-	&:hover {
-		background-color: $background-color_3;
-	}
+  margin-top: 10px;
+  background-color: $background-color_2;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $background-color_3;
+  }
 }
+
 .directButton.dark {
-	color: $color_1;
+  color: $color_1;
 }
+
 .directButton.light {
-	color: $color_3;
+  color: $color_3;
 }
+
 .posts {
-	margin-top: 20px;
+  margin-top: 20px;
 }
+
 .postsGrid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
+
 .noPosts {
-	color: $color_2;
-	text-align: center;
-	font-size: 16px;
+  color: $color_2;
+  text-align: center;
+  font-size: 16px;
 }
+
 @media (max-width: 768px) {
-	.postsGrid {
-		grid-template-columns: 1fr;
-	}
-	.avatar {
-		width: 50px;
-		height: 50px;
-		font-size: 20px;
-	}
-	.username {
-		font-size: 18px;
-	}
+  .postsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .username {
+    font-size: 18px;
+  }
 }

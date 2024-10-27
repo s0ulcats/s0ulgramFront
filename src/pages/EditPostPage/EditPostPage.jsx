@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import axios from '../../utils/axios.js';
 import s from './EditPostPage.module.scss';
 import { updatePost } from '../../redux/post/postSlice.js';
-import { AiOutlineFileImage, AiOutlineEdit, AiOutlineSave, AiOutlineClose } from 'react-icons/ai'; // Иконки для полей и кнопок
+import { AiOutlineFileImage, AiOutlineEdit, AiOutlineSave, AiOutlineClose } from 'react-icons/ai';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 
 const EditPostPage = () => {
@@ -15,7 +15,7 @@ const EditPostPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ const EditPostPage = () => {
       await dispatch(updatePost({ id: params.id, params: updatedPost })).unwrap();
       navigate(`/posts`);
     } catch (error) {
-      console.error('Error updating post:', error); // Для отладки
+      console.error('Error updating post:', error);
     }
   };
 
@@ -55,7 +55,7 @@ const EditPostPage = () => {
   return (
     <form onSubmit={submitHandler} className={`${s.editPostPage} ${theme === 'dark' ? s.dark : s.light}`}>
       <label className={s.fileInputLabel}>
-        <AiOutlineFileImage className={s.icon} /> {/* Иконка для загрузки изображения */}
+        <AiOutlineFileImage className={s.icon} />
         Add image:
         <input
           type="file"
@@ -85,7 +85,7 @@ const EditPostPage = () => {
       </div>
 
       <label>
-        <AiOutlineEdit className={s.icon} /> {/* Иконка для заголовка */}
+        <AiOutlineEdit className={s.icon} />
         Title:
         <input
           type="text"
@@ -97,7 +97,7 @@ const EditPostPage = () => {
       </label>
 
       <label>
-        <AiOutlineEdit className={s.icon} /> {/* Иконка для текста */}
+        <AiOutlineEdit className={s.icon} />
         Text:
         <textarea
           value={text}
@@ -109,10 +109,10 @@ const EditPostPage = () => {
 
       <div className={s.buttonGroup}>
         <button type="submit" className={s.saveButton}>
-          <AiOutlineSave className={s.iconButton} /> Save {/* Иконка на кнопке "Сохранить" */}
+          <AiOutlineSave className={s.iconButton} /> Save
         </button>
         <button type="button" className={`${s.cancelButton} ${theme === 'dark' ? s.dark : s.light}`} onClick={clearFormHandler}>
-          <AiOutlineClose className={s.iconButton} /> Cancel {/* Иконка на кнопке "Отмена" */}
+          <AiOutlineClose className={s.iconButton} /> Cancel
         </button>
       </div>
     </form>

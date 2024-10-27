@@ -10,8 +10,8 @@ import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { posts, popularPosts, loading, error } = useSelector(state => state.post);
-  const { theme } = useContext(ThemeContext)
+  const { posts, popularPosts, loading, error } = useSelector((state) => state.post);
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     dispatch(getAllPosts());
@@ -29,7 +29,7 @@ const MainPage = () => {
     <div className={`${s.main} ${theme === 'dark' ? s.dark : s.light}`}>
       <div className={s.posts}>
         <div className={s.postsContainer}>
-          {posts.map(post => (
+          {posts.map((post) => (
             <PostItem key={post._id} post={post} />
           ))}
         </div>
@@ -40,7 +40,7 @@ const MainPage = () => {
           <AiOutlineFire className={s.popularIcon} /> Popular Posts:
         </h2>
         <div className={s.popularPostsContainer}>
-          {popularPosts.map(post => (
+          {popularPosts.map((post) => (
             <PopularPosts key={post._id} post={post} />
           ))}
         </div>

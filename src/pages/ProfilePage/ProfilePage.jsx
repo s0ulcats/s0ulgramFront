@@ -6,21 +6,20 @@ import PostItem from '../../components/PostItem/PostItem';
 import { getAllPosts } from '../../redux/post/postSlice';
 import { useParams, useNavigate } from 'react-router-dom';
 import StatusEditor from './StatusEditor';
-import { AiOutlineUser, AiOutlineFileText } from 'react-icons/ai'; // Импорт иконок из React Icons
+import { AiOutlineUser, AiOutlineFileText } from 'react-icons/ai';
 import Preloader from '../../components/Preloader/Preloader';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
+
 const ProfilePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { theme } = useContext(ThemeContext)
-  
+  const { theme } = useContext(ThemeContext);
 
   const { user: authUser } = useSelector((state) => state.auth);
   const { user: myProfile, loading, error } = useSelector((state) => state.user);
-  const { posts = [], loading: postsLoading, error: postsError } = useSelector((state) => state.post);
+  const { posts = [] } = useSelector((state) => state.post);
 
-  // Проверяем авторизован ли пользователь, если нет — перенаправляем на страницу входа
   useEffect(() => {
     if (!authUser) {
       navigate('/login');
@@ -28,20 +27,18 @@ const ProfilePage = () => {
     }
     
     if (authUser._id) {
-      dispatch(getUserById(authUser._id)); // Загружаем данные профиля по ID
-      dispatch(getAllPosts(id)); // Получаем посты пользователя
+      dispatch(getUserById(authUser._id));
+      dispatch(getAllPosts(id));
     }
   }, [dispatch, authUser, id, navigate]);
 
-  if (loading) return <Preloader />
+  if (loading) return <Preloader />;
   if (error) return <p className={s.error}>Error: {error}</p>;
 
-  // Если нет пользователя, показываем сообщение
   if (!authUser || !myProfile) {
     return <p className={s.profileNotFound}>Profile not found or not authorized.</p>;
   }
 
-  // Фильтруем посты пользователя
   const userPosts = posts.filter(post => post.author === authUser._id);
 
   return (
@@ -51,7 +48,7 @@ const ProfilePage = () => {
           {myProfile.username.trim().toUpperCase().split('').slice(0, 1).join('')}
         </div>
         <div className={s.username}>
-          <AiOutlineUser className={s.icon} /> {/* Иконка пользователя */}
+          <AiOutlineUser className={s.icon} />
           {myProfile.username}
         </div>
         <div className={s.status}>
@@ -66,7 +63,7 @@ const ProfilePage = () => {
             </div>
           ) : (
             <div className={s.noPosts}>
-              <AiOutlineFileText className={s.noPostsIcon} /> {/* Иконка поста */}
+              <AiOutlineFileText className={s.noPostsIcon} />
               No posts available.
             </div>
           )}

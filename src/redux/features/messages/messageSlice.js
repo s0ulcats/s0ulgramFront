@@ -7,23 +7,22 @@ const initialState = {
   error: null,
 };
 
-// Асинхронное действие для создания сообщения
 export const createMessage = createAsyncThunk(
   'messages/createMessage',
   async ({ dialogId, message }, { rejectWithValue }) => {
     try {
-      const token = localStorage.getItem('token'); // Получаем токен из локального хранилища
+      const token = localStorage.getItem('token');
       const response = await axios.post(
         `/api/messages/${dialogId}`,
         { message },
-        { headers: { Authorization: `Bearer ${token}` } } // Отправляем токен в заголовке
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      return response.data; // Возвращаем данные нового сообщения
+      return response.data;
     } catch (err) {
       if (err.response && err.response.status === 403) {
         console.error("Ошибка 403: Недостаточно прав для выполнения этого действия.");
       }
-      return rejectWithValue(err.response.data); // Возвращаем ошибку
+      return rejectWithValue(err.response.data);
     }
   }
 );
@@ -35,16 +34,16 @@ const messageSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createMessage.pending, (state) => {
-        state.loading = true; // Устанавливаем статус загрузки
-        state.error = null; // Обнуляем ошибку при отправке нового сообщения
+        state.loading = true;
+        state.error = null;
       })
       .addCase(createMessage.fulfilled, (state, action) => {
-        state.loading = false; // Завершаем статус загрузки
-        state.messages.push(action.payload); // Добавляем новое сообщение в массив
+        state.loading = false;
+        state.messages.push(action.payload);
       })
       .addCase(createMessage.rejected, (state, action) => {
-        state.loading = false; // Завершаем статус загрузки
-        state.error = action.payload; // Устанавливаем ошибку
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });

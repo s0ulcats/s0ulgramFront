@@ -5,7 +5,7 @@ import PostsPage from "./pages/PostsPage/PostsPage.jsx";
 import AddPostPage from "./pages/AddPostPage/AddPostPage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
-import PostPage from "./pages/PostPage/PostPage.jsx"; // Импортируем PostPage
+import PostPage from "./pages/PostPage/PostPage.jsx";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
@@ -34,10 +34,10 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/users" element={<UsersPage />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/post/:id" element={<PostPage />} /> {/* Изменено для постов */}
-        <Route path="/post/:id/edit" element={<EditPostPage />} /> {/* Добавлен маршрут для редактирования поста */}
-        <Route path="/user/:id" element={<UserProfileContainer />} /> {/* Изменено для пользователей */}
-        <Route path="/dialog/:id" element={<DialogPage />} /> {/* Добавлен маршрут для диалогов */}
+        <Route path="/post/:id" element={<PostPage />} />
+        <Route path="/post/:id/edit" element={<EditPostPage />} />
+        <Route path="/user/:id" element={<UserProfileContainer />} />
+        <Route path="/dialog/:id" element={<DialogPage />} />
       </Routes>
 
       <ToastContainer position="bottom-right" />

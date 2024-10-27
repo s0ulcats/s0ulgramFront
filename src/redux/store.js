@@ -1,4 +1,3 @@
-// redux/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./features/auth/authSlice";
 import postSlice from "./post/postSlice";

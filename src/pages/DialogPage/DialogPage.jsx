@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { AiOutlineSend, AiOutlineMessage } from 'react-icons/ai'; // Importing icons
+import { AiOutlineSend, AiOutlineMessage } from 'react-icons/ai';
 import axios from '../../utils/axios';
-import s from './DialogPage.module.scss'; // Importing CSS module
+import s from './DialogPage.module.scss';
 import { ThemeContext } from '../../components/ThemeContext/ThemeContext';
 
 const DialogPage = () => {
-    const { id: dialogId } = useParams(); // Get dialogId from route parameters
+    const { id: dialogId } = useParams();
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const { theme } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext);
 
     const fetchMessages = async () => {
         if (!dialogId) {
@@ -39,11 +39,11 @@ const DialogPage = () => {
         try {
             const response = await axios.post(`/messages/${dialogId}`, { 
                 message, 
-                dialogId // Pass dialogId
+                dialogId 
             });
             console.log('Message sent:', response.data);
-            setMessage(''); // Clear input field
-            fetchMessages(); // Refresh messages list after sending
+            setMessage('');
+            fetchMessages();
         } catch (error) {
             console.error('Error sending message:', error.response ? error.response.data : error.message);
         }
@@ -54,7 +54,7 @@ const DialogPage = () => {
             <div className={`${s.messagesContainer} ${theme === 'dark' ? s.dark : s.light}`}>
                 {messages.map(msg => (
                     <div key={msg._id} className={`${s.message} ${theme === 'dark' ? s.dark : s.light}`}>
-                        <AiOutlineMessage className={s.messageIcon} /> {/* Message icon */}
+                        <AiOutlineMessage className={s.messageIcon} />
                         <strong className={`${s.author} ${theme === 'dark' ? s.dark : s.light}`}>{msg.author?.username || 'Unavailable author'}:</strong>
                         <span className={`${s.content} ${theme === 'dark' ? s.dark : s.light}`}>{msg.message || 'Not message'}</span>
                     </div>
@@ -69,7 +69,7 @@ const DialogPage = () => {
                     className={`${s.inputField} ${theme === 'dark' ? s.dark : s.light}`}
                 />
                 <button type="submit" className={`${s.sendButton} ${theme === 'dark' ? s.dark : s.light}`}>
-                    Send <AiOutlineSend className={s.sendIcon} /> {/* Send icon */}
+                    Send <AiOutlineSend className={s.sendIcon} />
                 </button>
             </form>
         </div>

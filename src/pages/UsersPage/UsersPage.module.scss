@@ -10,28 +10,40 @@ $background-color_6: #ff40cf;
 $background-color_7: #002b5c;
 $background-color_8: #b69af8;
 
-/* UsersPage.module.css */
 .container {
 	padding: 20px;
 	border-radius: 8px;
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+	@media (max-width: 768px) {
+		padding: 15px;
+	}
 }
+
 .container.dark {
 	background-color: $background-color_1;
 }
+
 .container.light {
 	background-color: $background-color_2;
 }
+
 .title {
 	color: $color_1;
 	margin-bottom: 20px;
 	text-align: center;
+
+	@media (max-width: 768px) {
+		font-size: 1.5rem;
+	}
 }
+
 .userItem {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
+
 .userCard {
 	display: flex;
 	align-items: center;
@@ -41,21 +53,30 @@ $background-color_8: #b69af8;
 	width: 100%;
 	cursor: pointer;
 	transition: background-color 0.3s, transform 0.2s;
+
+	@media (max-width: 768px) {
+		padding: 8px;
+	}
 }
+
 .userCard.dark {
 	background-color: $background-color_3;
+
 	&:hover {
 		background-color: $background-color_5;
 		transform: scale(1.02);
 	}
 }
+
 .userCard.light {
 	background-color: $background-color_4;
+
 	&:hover {
 		background-color: $background-color_6;
 		transform: scale(1.02);
 	}
 }
+
 .avatar {
 	display: flex;
 	align-items: center;
@@ -67,24 +88,38 @@ $background-color_8: #b69af8;
 	font-weight: bold;
 	font-size: 1.5rem;
 	margin-right: 10px;
+
+	@media (max-width: 768px) {
+		width: 40px;
+		height: 40px;
+		font-size: 1.2rem;
+	}
 }
+
 .avatar.dark {
 	background-color: $background-color_7;
 }
+
 .avatar.light {
 	background-color: $background-color_8;
 }
+
 .username {
 	font-size: 1.2rem;
+
+	@media (max-width: 768px) {
+		font-size: 1rem;
+	}
 }
+
 .username.dark {
 	color: $color_2;
-	font-size: 1.2rem;
 }
+
 .username.light {
 	color: $color_3;
-	font-size: 1.2rem;
 }
+
 .userIcon {
 	color: $color_1;
 }

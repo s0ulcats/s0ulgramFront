@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { AiFillEye, AiOutlineMessage, AiTwotoneEdit, AiFillDelete } from 'react-icons/ai';
 import Moment from 'react-moment';
 import axios from '../../utils/axios.js';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import s from './PostPage.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { removePost } from '../../redux/post/postSlice.js';
@@ -15,17 +15,16 @@ const PostPage = () => {
   const [post, setPost] = useState(null);
   const [comment, setComment] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
-  const { comments = [], loading } = useSelector((state) => state.comment);
+  const { comments = [] } = useSelector((state) => state.comment);
   const params = useParams();
-  const { theme } = useContext(ThemeContext); // Получаем тему из контекста
+  const { theme } = useContext(ThemeContext);
 
   const handleSubmit = async () => {
     try {
       const postId = params.id;
       await dispatch(createComment({ postId, comment }));
-      setComment(''); // Очищаем поле ввода комментария
+      setComment('');
     } catch (error) {
       console.error('Error creating comment:', error);
     }
@@ -40,7 +39,7 @@ const PostPage = () => {
   }, [params.id, dispatch]);
 
   useEffect(() => {
-    fetchComments(); // Загружаем комментарии при монтировании компонента
+    fetchComments();
   }, [fetchComments]);
 
   useEffect(() => {
@@ -57,7 +56,7 @@ const PostPage = () => {
   }, [params.id]);
 
   if (!post) {
-    return <Preloader />
+    return <Preloader />;
   }
 
   return (

@@ -4,11 +4,12 @@ import Moment from 'react-moment';
 import s from './PostItem.module.scss';
 import { NavLink } from 'react-router-dom';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
+import Preloader from '../Preloader/Preloader';
 
 const PostItem = ({ post }) => {
-    const { theme } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext);
     if (!post) {
-        return <div className={s.post}>Загрузка...</div>;
+        return <Preloader />
     }
 
     return (

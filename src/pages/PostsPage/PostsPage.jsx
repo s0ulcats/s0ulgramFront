@@ -7,7 +7,7 @@ import { ThemeContext } from '../../components/ThemeContext/ThemeContext.jsx';
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   const fetchMyPosts = async () => {
     try {
@@ -27,7 +27,7 @@ const PostsPage = () => {
     <div className={`${s.container} ${theme === 'dark' ? s.dark : s.light}`}>
       {error && <div className={s.error}>{error}</div>}
       <div className={s.postsGrid}>
-        {posts.map((post, idx) => (
+        {posts.map((post) => (
           <PostItem key={post._id} post={post} className={s.postItem} />
         ))}
       </div>

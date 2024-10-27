@@ -10,103 +10,131 @@ $background-color_4: #bfa7f8;
 $background-color_5: #ff4081;
 $background-color_6: #e91e63;
 
-/* PostPage.module.css */
 .container {
 	padding: 20px;
 	border-radius: 10px;
 	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+	@media (max-width: 768px) {
+		padding: 15px;
+	}
 }
+
 .container.dark {
 	color: $color_1;
 	background-color: $background-color_1;
 }
+
 .container.light {
 	color: $color_3;
 	background-color: $background-color_2;
 }
+
 .returnBtn {
 	color: $color_2;
 	text-decoration: none;
 	margin-bottom: 20px;
 }
+
 .postPage {
 	position: relative;
 	transition: transform 0.2s ease-in-out;
 }
+
 .imgWrapper {
 	max-width: 100%;
 	border-radius: 10px;
 	overflow: hidden;
 }
+
 .image {
 	width: 100%;
 	height: auto;
 }
+
 .postInfo {
 	display: flex;
 	justify-content: space-between;
 	font-size: 0.9rem;
 	margin: 10px 0;
 }
+
 .title {
 	font-size: 2rem;
 	margin: 10px 0;
 	color: $color_2;
 }
+
 .text {
 	margin: 10px 0;
 }
+
 .postActions {
 	display: flex;
 	justify-content: space-between;
 	margin-top: 20px;
 }
+
 .iconBtn {
 	background: transparent;
 	border: none;
 	cursor: pointer;
 	transition: color 0.3s;
+
 	&:hover {
 		color: $color_2;
 	}
 }
+
 .iconBtn.dark {
 	color: $color_1;
 }
+
 .iconBtn.light {
 	color: $color_3;
 }
+
 .comments {
 	margin-top: 30px;
 	padding-top: 20px;
 	border-top: 1px solid #333;
 }
+
 .addComment {
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
 }
+
 .commentInput {
 	flex: 1;
 	padding: 10px;
 	border: 1px solid #333;
 	border-radius: 5px;
 	margin-right: 10px;
+
+	@media (max-width: 768px) {
+		margin-right: 5px;
+	}
 }
+
 .commentInput.dark {
 	background-color: $background-color_3;
 	color: $color_1;
+
 	&::placeholder {
 		color: $color_4;
 	}
 }
+
 .commentInput.light {
 	background-color: $background-color_4;
 	color: $color_3;
+
 	&::placeholder {
 		color: $color_5;
 	}
 }
+
 .submitBtn {
 	padding: 10px 15px;
 	background-color: $background-color_5;
@@ -115,11 +143,17 @@ $background-color_6: #e91e63;
 	cursor: pointer;
 	color: $color_1;
 	transition: background-color 0.3s;
+
 	&:hover {
 		background-color: $background-color_6;
 	}
 }
+
 .commentList {
 	max-height: 300px;
 	overflow-y: auto;
+
+	@media (max-width: 768px) {
+		max-height: 200px;
+	}
 }

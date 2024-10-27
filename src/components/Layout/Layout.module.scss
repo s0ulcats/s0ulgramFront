@@ -1,0 +1,53 @@
+$color_1: white;
+$color_2: black;
+$background-color_1: #0e0045;
+$background-color_2: #13025b;
+$background-color_3: #dcd0f9;
+$background-color_4: #e1d6fc;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $background-color_1;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: $background-color_2;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 600px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    width: 100%;
+  }
+}
+
+.container.dark {
+  background-color: $background-color_1;
+  color: $color_1;
+}
+
+.content.dark {
+  background-color: $background-color_2;
+  color: $color_1;
+}
+
+.container.light {
+  background-color: $background-color_3;
+  color: $color_2;
+}
+
+.content.light {
+  background-color: $background-color_4;
+  color: $color_2;
+}

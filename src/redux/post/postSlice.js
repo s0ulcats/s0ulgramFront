@@ -28,7 +28,7 @@ export const removePost = createAsyncThunk('post/removePost', async (id) => {
 
 export const updatePost = createAsyncThunk('post/updatePost', async ({ id, params }) => {
   try {
-    const { data } = await axios.put(`/posts/${id}`, params)
+    const { data } = await axios.put(`/posts/${id}`, params);
     return data;
   } catch (error) {
     throw error;
@@ -63,9 +63,8 @@ const postSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-    builder
       .addCase(getAllPosts.fulfilled, (state, action) => {
-        state.posts = action.payload.posts; // Здесь убедись, что API возвращает объект с полем `posts`
+        state.posts = action.payload.posts;
         state.popularPosts = action.payload.popularPosts;
         state.loading = false;
       })

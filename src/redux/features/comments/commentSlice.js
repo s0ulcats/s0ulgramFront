@@ -13,7 +13,6 @@ export const createComment = createAsyncThunk(
       const { data } = await axios.post(`/comments/${postId}`, { postId, comment });
       return data;
     } catch (error) {
-      console.log('Error creating comment:', error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -26,7 +25,6 @@ export const getPostComments = createAsyncThunk(
       const { data } = await axios.get(`/posts/comments/${postId}`);
       return data;
     } catch (error) {
-      console.log('Error fetching post comments:', error);
       return rejectWithValue(error.response.data);
     }
   }
@@ -47,7 +45,6 @@ export const commentSlice = createSlice({
       })
       .addCase(createComment.rejected, (state, action) => {
         state.loading = false;
-        console.log('Create comment error:', action.payload);
       })
       .addCase(getPostComments.pending, (state) => {
         state.loading = true;
@@ -58,7 +55,6 @@ export const commentSlice = createSlice({
       })
       .addCase(getPostComments.rejected, (state, action) => {
         state.loading = false;
-        console.log('Fetch comments error:', action.payload);
       });
   },
 });

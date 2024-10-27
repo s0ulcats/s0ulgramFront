@@ -5,7 +5,7 @@ import s from './PopularPosts.module.scss';
 import { ThemeContext } from '../ThemeContext/ThemeContext';
 
 const PopularPosts = ({ post }) => {
-    const { theme } = useContext(ThemeContext)
+    const { theme } = useContext(ThemeContext);
     return (
         <div className={`${s.popularPostsContainer} ${theme === 'dark' ? s.dark : s.light}`}>
             <div className={`${s.popularPostItem} ${theme === 'dark' ? s.dark : s.light}`}>

@@ -1,5 +1,5 @@
-import React from "react"
-import preloader from './preloader.svg'
+import React from "react";
+import preloader from './preloader.svg';
 
 let Preloader = (props) => {
     return <div>
@@ -7,4 +7,4 @@ let Preloader = (props) => {
     </div>
 }
 
-export default Preloader
+export default Preloader;

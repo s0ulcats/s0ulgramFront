@@ -8,80 +8,112 @@ $background-color_4: #e573a7;
 $background-color_5: #c9b4fa;
 
 .nav {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 10px 20px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 600px) {
+    padding: 8px 15px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 9px 18px;
+  }
 }
-.nav.dark{
-	background-color: $background-color_1;
+
+.nav.dark {
+  background-color: $background-color_1;
 }
-.nav.light{
-	background-color: $background-color_5;
+
+.nav.light {
+  background-color: $background-color_5;
 }
+
 .icon {
-	height: 40px;
-	margin-right: 20px;
+  height: 40px;
+  margin-right: 20px;
+
+  @media (max-width: 600px) {
+    height: 30px;
+  }
 }
+
 .navList {
-	list-style: none;
-	display: flex;
-	gap: 15px;
+  list-style: none;
+  display: flex;
+  gap: 15px;
+
+  @media (max-width: 600px) {
+    gap: 10px;
+  }
 }
+
 .navLink {
-	text-decoration: none;
-	padding: 8px 12px;
-	transition: background 0.3s, color 0.3s;
-	border-radius: 5px;
-	&:hover {
-		background: rgba(255, 255, 255, 0.1);
-	}
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 5px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
+
 .navLink.dark {
-	color: $color_2;
+  color: $color_2;
 }
+
 .navLink.light {
-	color: $color_3;
+  color: $color_3;
 }
+
 .authContainer {
-	margin-left: auto;
+  margin-left: auto;
 }
+
 .btn {
-	background-color: $background-color_3;
-	color: $color_1;
-	border: none;
-	padding: 10px 15px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background 0.3s;
-	&:hover {
-		background-color: $background-color_4;
-	}
+  background-color: $background-color_3;
+  color: $color_1;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  @media (max-width: 600px) {
+    padding: 8px 12px;
+  }
+  
+  &:hover {
+    background-color: $background-color_4;
+  }
 }
+
 .themeSwitchBtn {
-	background-color: $background-color_2;
-	color: $color_3;
-	border: none;
-	padding: 10px 15px;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
-	font-weight: bold;
+  background-color: $background-color_2;
+  color: $color_3;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, transform 0.2s ease-in-out;
+  font-weight: bold;
 
-	&:hover {
-		background-color: $background-color_4;
-		color: $color_1;
-		transform: scale(1.05);
-	}
+  &:hover {
+    background-color: $background-color_4;
+    color: $color_1;
+    transform: scale(1.05);
+  }
 
-	&.dark {
-		background-color: $background-color_1;
-		color: $color_2;
-	}
+  &.dark {
+    background-color: $background-color_1;
+    color: $color_2;
+  }
 
-	&.light {
-		background-color: $background-color_5;
-		color: $color_3;
-	}
+  &.light {
+    background-color: $background-color_5;
+    color: $color_3;
+  }
 }
